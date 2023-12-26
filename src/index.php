@@ -6,6 +6,9 @@ use App\OOP\Abstraction\Order;
 use App\OOP\Encapsulation\CarDashboard;
 use App\OOP\Relationship\Printer\HtmlPrinter;
 use App\OOP\Relationship\Teacher;
+use App\Patterns\Creational\Builder\Builders\ComputerCSBuilder;
+use App\Patterns\Creational\Builder\Builders\ComputerXLBuilder;
+use App\Patterns\Creational\Builder\Director;
 use App\Patterns\Creational\FactoryMethod\DialogExample\Dialogs\MobileDialog;
 use App\Patterns\Creational\FactoryMethod\DialogExample\Dialogs\SystemDialog;
 use App\Patterns\Creational\FactoryMethod\DialogExample\Dialogs\WebDialog;
@@ -39,9 +42,17 @@ require_once __DIR__ . '/../vendor/autoload.php';
 //$mohamed = new Teacher('Mohamed');
 //var_dump($mohamed->sayWelcome(new HtmlPrinter));
 
-$webDialog = new WebDialog();
-var_dump($webDialog->renderDialog());
-$mobileDialog = new MobileDialog();
-var_dump($mobileDialog->renderDialog());
-$systemDialog = new SystemDialog();
-var_dump($systemDialog->renderDialog());
+// Factory Method
+//$webDialog = new WebDialog();
+//var_dump($webDialog->renderDialog());
+//$mobileDialog = new MobileDialog();
+//var_dump($mobileDialog->renderDialog());
+//$systemDialog = new SystemDialog();
+//var_dump($systemDialog->renderDialog());
+
+//Builder
+echo "<pre/>";
+$director = new Director(new ComputerCSBuilder());
+var_dump($director->makeComputer());
+$director->changeBuilder(new ComputerXLBuilder());
+var_dump($director->makeComputer());
